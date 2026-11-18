@@ -1,0 +1,55 @@
+{
+  "name": "cubie",
+  "version": "3.0.0",
+  "description": "Official SDK for CubieID OAuth integrations",
+  "keywords": [
+    "cubie",
+    "cubieid",
+    "oauth",
+    "oauth2",
+    "authentication"
+  ],
+  "homepage": "https://cubie.com.br",
+  "bugs": {
+    "url": "https://github.com/CubieCloud/Cubie/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CubieCloud/Cubie.git"
+  },
+  "license": "UNLICENSED",
+  "author": "CubieCloud",
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    }
+  },
+  "main": "./dist/index.cjs",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "clean": "node -e \"require('node:fs').rmSync('dist',{recursive:true,force:true})\"",
+    "build": "npm run clean && tsup src/index.ts --format esm,cjs --dts --sourcemap --clean",
+    "test": "npm run build && node test.mjs",
+    "prepublishOnly": "npm run build"
+  },
+  "devDependencies": {
+    "tsup": "^8.5.1",
+    "typescript": "^5.9.3"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "module": "./dist/index.js"
+}
